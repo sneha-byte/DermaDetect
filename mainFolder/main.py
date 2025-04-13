@@ -12,7 +12,7 @@ app = FastAPI()
 # Allow CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # or your frontend URL
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -29,9 +29,9 @@ transform = transforms.Compose([
     transforms.ToTensor(),
 ])
 
+#API endpoint 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
-    print('HI')
     image_bytes = await file.read()
     image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
     image = transform(image).unsqueeze(0)

@@ -29,7 +29,7 @@ const Upload = () => {
 
       const data = await response.json();
       setPrediction(
-        `Our model predicts there is a ${(data.probability * 100).toFixed(2)}% chance of this image showing malignant skin cancer.`
+        `Our model predicts there is a ${(data.probability * 100).toFixed(5)}% chance of this image showing malignant skin cancer.`
       ); // Update prediction state
     } catch (error) {
       console.error("Error:", error);
@@ -42,7 +42,7 @@ const Upload = () => {
   return (
     <div className="min-h-screen bg-[#F5F5F5] flex flex-col items-center justify-start p-20">
       <h1 className="text-6xl font-bold text-[#4A154B] text-center pt-4 pb-5">
-        Skin Cancer Detector
+        Malignant Skin Cancer Detector
       </h1>
 
       <h2 className="text-2xl text-[#4A154B] text-center mt-2">
