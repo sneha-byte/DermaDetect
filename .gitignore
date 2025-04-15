@@ -25,3 +25,4 @@ dist-ssr
 /training/data/
 .venv
 mainFolder
+/training/data/image/
