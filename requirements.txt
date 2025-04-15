@@ -4,7 +4,7 @@ torchvision
 pillow
 jupyter
 pandas
-h5py
 matplotlib
 opencv-python
 tqdm
+uvicorn
