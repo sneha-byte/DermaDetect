@@ -1,7 +1,7 @@
-import ListGroup from "./components/Upload"
+import Home from "./components/Home"
 
 function App() {
-  return <div><ListGroup /></div>; 
+  return <div><Home /></div>; 
 }
 
 export default App; 
