@@ -14,7 +14,7 @@ const Home = () => {
 
 	return (
 		<div className="min-h-screen bg-[#F5F5F5] flex flex-col items-center justify-start p-20">
-			<h1 className="text-6xl font-bold text-[#4A154B] text-center pt-4 pb-5">
+			<h1 className="text-5xl font-bold text-[#4A154B] text-center pt-4 pb-5">
 				Malignant Skin Cancer Detector
 			</h1>
 
@@ -35,21 +35,28 @@ const Home = () => {
 				</label>
 				<div
 					onClick={() => {
-            if (isLoading) return
+						if (isLoading) return;
 
 						if (selectedFile) {
-              setLoading(true)
-							handlePredict(selectedFile, (probs: DiseaseProbs | null) => {
-                if (probs) {
-                  setPrediction(`Probability of Melanoma: ${(probs.melanoma * 100).toFixed(3)}%`);
-                }
-                else {
-                  setPrediction("Failed to make predictions")
-                }
-                setLoading(false)
-              });
+							setLoading(true);
+							handlePredict(
+								selectedFile,
+								(probs: DiseaseProbs) => {
+									setPrediction(
+										`Probability of Melanoma: ${(
+											probs.melanoma * 100
+										).toFixed(3)}%`
+									);
+									setLoading(false);
+								},
+								() => {
+									setPrediction(
+										"Failed to obtain predictions"
+									);
+									setLoading(false);
+								}
+							);
 						}
-            
 					}}
 					className="text-white text-xl font-semibold px-17 rounded-xl bg-[#D291BC] hover:bg-[#E8AFCF] hover:scale-105 flex items-center justify-center transition-transform cursor-pointer"
 				>
