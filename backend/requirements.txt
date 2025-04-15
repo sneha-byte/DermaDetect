@@ -1,7 +1,5 @@
 fastapi[standard]
 torch
-torchvision
 pillow
-opencv-python
-tqdm
 uvicorn[standard]
+transformers[torch]

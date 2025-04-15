@@ -2,9 +2,11 @@
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
-import torch
+from torch import no_grad
+from torch.nn.functional import softmax
 import io
-from model import SkinCancerCNN, transform  # import your model architecture
+from transformers import AutoImageProcessor, AutoModelForImageClassification
+import uvicorn
 
 app = FastAPI()
 
@@ -17,20 +19,30 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Instantiate and load model
-model = SkinCancerCNN()
-model.load_state_dict(torch.load("cnn_weights.pth"))
-model.eval()
+# Load model and processor
+processor = AutoImageProcessor.from_pretrained("Anwarkh1/Skin_Cancer-Image_Classification")
+model = AutoModelForImageClassification.from_pretrained("Anwarkh1/Skin_Cancer-Image_Classification")
+
 
 # API endpoint
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
     image_bytes = await file.read()
     image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
-    image = transform(image).unsqueeze(0)
+    inputs = processor(images=image, return_tensors="pt")
 
-    with torch.no_grad():
-        output = model(image)
-        probability = output.item()  # Get float from tensor
+    with no_grad():
+        outputs = model(**inputs)
 
-    return {"probability": probability}
+    logits = outputs.logits
+    probs = softmax(logits, dim=-1)[0]  # Shape: [num_classes]
+
+    # Map class labels to probabilities
+    id2label = model.config.id2label
+    result = {id2label[i]: probs[i].item() for i in range(len(probs))}
+
+    return {"probabilities": result}
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="127.0.0.1", port=8000, log_level="info")

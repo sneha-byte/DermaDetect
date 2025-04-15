@@ -28,8 +28,15 @@ const Upload = () => {
       });
 
       const data = await response.json();
+      if (!data) {
+        setLoading(false)
+        return
+      }
+
+      const prob = data?.probabilities?.actinic_keratoses ?? 0;
+
       setPrediction(
-        `Our model predicts there is a ${(data.probability * 100).toFixed(5)}% chance of this image showing malignant skin cancer.`
+        `Our model predicts there is a ${(prob * 100).toFixed(3)}% chance of this image showing malignant skin cancer.`
       ); // Update prediction state
     } catch (error) {
       console.error("Error:", error);
