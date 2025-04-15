@@ -1,4 +1,4 @@
-fastapi
+fastapi[standard]
 torch
 torchvision
 pillow
@@ -7,4 +7,4 @@ pandas
 matplotlib
 opencv-python
 tqdm
-uvicorn
+uvicorn[standard]

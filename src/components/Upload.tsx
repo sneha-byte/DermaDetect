@@ -22,7 +22,7 @@ const Upload = () => {
     formData.append("file", selectedFile);
 
     try {
-      const response = await fetch("http://localhost:8000/predict", {
+      const response = await fetch("http://127.0.0.1:8000/predict", {
         method: "POST",
         body: formData,
       });
@@ -50,7 +50,7 @@ const Upload = () => {
       </h2>
 
       <div className="flex gap-14 p-10 pl-25 pr-25 rounded-2xl bg-[#F5F5F5]/80">
-        <label className="cursor-pointer bg-[#D291BC] hover:bg-[#E8AFCF] text-white text-xl font-semibold px-8 py-3 rounded-xl transition flex items-center gap-2">
+        <label className="cursor-pointer bg-[#D291BC] hover:bg-[#E8AFCF] hover:scale-105 transition-transform text-white text-xl font-semibold px-8 py-3 rounded-xl flex items-center gap-2">
           <i className="fas fa-upload"></i> Choose Image
           <input
             type="file"
