@@ -25,7 +25,8 @@ export async function handlePredict(
 		})
 			.then((response) => response.json())
 			.then((data) => data.probabilities)
-			.then((probs) => successCallback(probs), failCallback);
+			.then((probs) => successCallback(probs))
+			.catch(failCallback);
 	} catch (error) {
 		console.error("Error:", error);
 	}
