@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { handlePredict, DiseaseProbs } from "../utility/fetch";
+import Navbar from "../components/Navbar";
 
 const Home = () => {
 	const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -36,7 +37,8 @@ const Home = () => {
 	};
 
 	return (
-		<div className="min-h-screen bg-[#F5F5F5] flex flex-col items-center justify-start p-20">
+		<div className="min-h-screen bg-[#F5F5F5] flex flex-col items-center justify-start ">
+			<Navbar></Navbar>
 			<h1 className="text-5xl font-bold text-[#4A154B] text-center pt-4 pb-5">
 				Malignant Skin Cancer Detector
 			</h1>
