@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
 function Home() {
-    return <h1>Home</h1>;
+    return <h1>Home Page</h1>;
 }
 
 function HowItWorks() {
