@@ -1,28 +1,23 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import MainLayout from "./pages/layout";
 import Home from "./pages/Home"; 
 
-function HowItWorks() {
-    return <h1>How It Works</h1>;
-}
 
-function AboutSkinCancer() {
-    return <h1>About Skin Cancer</h1>;
-}
 
-function FindADermatologist() {
-    return <h1>Find a Dermatologist</h1>;
-}
+
+
+
 
 function App() {
     return (
         <Router>
-            <Navbar />
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/how-it-works" element={<HowItWorks />} />
-                <Route path="/about-skin-cancer" element={<AboutSkinCancer />} />
-                <Route path="/find-a-dermatologist" element={<FindADermatologist />} />
+            <Route element={<MainLayout />}>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/how-it-works" element={<HowItWorks />} />
+                  <Route path="/about-skin-cancer" element={<AboutSkinCancer />} />
+                  <Route path="/find-a-dermatologist" element={<FindADermatologist />} />
+            </Route>
             </Routes>
         </Router>
     );
