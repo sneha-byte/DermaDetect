@@ -1,9 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-
-function Home() {
-    return <h1>Home</h1>;
-}
+import Home from "./pages/Home"; 
 
 function HowItWorks() {
     return <h1>How It Works</h1>;
