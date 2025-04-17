@@ -2,7 +2,8 @@ from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import json
 from PIL import Image
-from torch import no_grad
+from torch import no_grad, set_num_threads, set_num_interop_threads
+import multiprocessing
 from torch.nn.functional import softmax
 import io
 from transformers import AutoImageProcessor, AutoModelForImageClassification
@@ -10,6 +11,10 @@ import uvicorn
 import requests
 from pydantic import BaseModel, constr, Field, StrictBool, StrictInt
 
+
+# Configure PyTorch threading
+set_num_threads(multiprocessing.cpu_count())
+set_num_interop_threads(multiprocessing.cpu_count())
 
 app = FastAPI()
 
@@ -94,4 +99,4 @@ def execute_backend(**kwargs):
 
 
 if __name__ == "__main__":
-    execute_backend(host="127.0.0.1", port=8000, log_level="info")
+    execute_backend(host="0.0.0.0", port=8000, log_level="info")
