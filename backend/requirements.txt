@@ -3,3 +3,5 @@ torch
 pillow
 uvicorn[standard]
 transformers[torch]
+requests
+pydantic

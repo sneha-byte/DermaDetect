@@ -1,12 +1,15 @@
-# main.py
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+import json
 from PIL import Image
 from torch import no_grad
 from torch.nn.functional import softmax
 import io
 from transformers import AutoImageProcessor, AutoModelForImageClassification
 import uvicorn
+import requests
+from pydantic import BaseModel, constr, Field, StrictBool, StrictInt
+
 
 app = FastAPI()
 
@@ -20,8 +23,16 @@ app.add_middleware(
 )
 
 # Load model and processor
-processor = AutoImageProcessor.from_pretrained("Anwarkh1/Skin_Cancer-Image_Classification")
+processor = AutoImageProcessor.from_pretrained(
+    "Anwarkh1/Skin_Cancer-Image_Classification",
+    use_fast=True
+)
 model = AutoModelForImageClassification.from_pretrained("Anwarkh1/Skin_Cancer-Image_Classification")
+
+
+@app.get("/")
+async def read_root():
+    return {"Hello": "World"}
 
 
 # API endpoint
@@ -44,5 +55,43 @@ async def predict(file: UploadFile = File(...)):
     return {"probabilities": result}
 
 
+class SearchRequestModel(BaseModel):
+    query: constr(min_length=0) = Field(..., description="Search keyword")
+    aroundLatLng: constr(pattern=r"\-?\d+\.?\d*,\s*\-?\d+\.?\d*") = Field(..., description="Coordinates in 'lat,lng' format")
+    getRankingInfo: StrictBool = Field(..., description="Must be a boolean")
+    page: StrictInt = Field(..., ge=0, description="Page number (0-indexed)")
+    aroundRadius: StrictInt = Field(..., gt=0, description="Search radius in meters (must be positive)")
+
+    class Config:
+        extra = "forbid"
+        arbitrary_types_allowed = False
+
+
+header = {
+    "X-Algolia-Application-Id": "55WTPYUY7Q",
+    "X-Algolia-API-Key": "41da89e44195a72b2d9d109eeee8db8f",
+    "Content-Type": "application/json; charset=UTF-8",
+    "origin": "https://find-a-derm.aad.org",
+    "referer": "https://find-a-derm.aad.org/"
+}
+
+AAD_URL_BASE = "https://55wtpyuy7q-dsn.algolia.net/1/indexes/production/query"
+
+
+@app.post("/findDoc")
+async def findDoc(searchRequest: SearchRequestModel):
+    json_payload = json.loads(searchRequest.model_dump_json())
+    response = requests.post(AAD_URL_BASE, json=json_payload, headers=header)
+
+    if response.status_code != 200:
+        raise HTTPException(response.status_code, detail=response.json())
+
+    return response.json()
+
+
+def execute_backend(**kwargs):
+    uvicorn.run(app, **kwargs)
+
+
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000, log_level="info")
+    execute_backend(host="127.0.0.1", port=8000, log_level="info")
