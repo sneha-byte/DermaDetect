@@ -1,7 +1,7 @@
 import unittest
 import requests
 
-BACKEND_URL = "http://127.0.0.1:8000"   # Change this to the backend url when testing
+BACKEND_URL = "https://dermadetect.onrender.com"   # Change this to the backend url when testing
 TEST_IMG_PATH = "skin_cancer_test.jpeg"
 search_header = {"Content-Type": "application/json"}
 
