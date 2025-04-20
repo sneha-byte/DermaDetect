@@ -1,11 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainLayout from "./pages/layout";
 import Home from "./pages/Home"; 
-
-
-
-
-
+import FindADermatologist from "./pages/FindADermatologist";
+import AboutSkinCancer from "./pages/AboutSkinCancer";
+import HowItWorks from "./pages/HowItWorks";
 
 
 function App() {

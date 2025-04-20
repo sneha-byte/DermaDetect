@@ -1,20 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-@import "tailwindcss";
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-* {
-    font-family: 'Poppins', sans-serif;
-    text-decoration: none;
-}
-
-.gradient-bg {
-    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-}
-
-
 module.exports = {
     theme: {
         extend: {

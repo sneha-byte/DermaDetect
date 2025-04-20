@@ -1,10 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { handlePredict, DiseaseProbs } from "../utility/fetch";
 
 const Home = () => {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [prediction, setPrediction] = useState<string | null>(null);
     const [isLoading, setLoading] = useState(false);
+    const [showChooseImage, setShowChooseImage] = useState(false);
+    const [showPredictButton, setShowPredictButton] = useState(false);
+
+    useEffect(() => {
+        // Show the Choose Image button after 500ms
+        const chooseImageTimeout = setTimeout(() => {
+            setShowChooseImage(true);
+        }, 500);
+
+        // Show the Predict button after the choose image button
+        const predictButtonTimeout = setTimeout(() => {
+            setShowPredictButton(true);
+        }, 1000);
+
+        return () => {
+            clearTimeout(chooseImageTimeout);
+            clearTimeout(predictButtonTimeout);
+        };
+    }, []);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length > 0) {
@@ -46,21 +65,27 @@ const Home = () => {
             </h2>
 
             <div className="flex gap-14 p-10 pl-25 pr-25 rounded-2xl bg-[#F5F5F5]/80">
-                <label className="cursor-pointer bg-[#D291BC] hover:bg-[#E8AFCF] hover:scale-105 transition-transform text-white text-xl font-semibold px-8 py-3 rounded-xl flex items-center gap-2">
-                    <i className="fas fa-upload"></i> Choose Image
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleFileChange}
-                        className="hidden"
-                    />
-                </label>
-                <div
-                    onClick={handlePredictButtonClick}
-                    className="text-white text-xl font-semibold px-17 rounded-xl bg-[#D291BC] hover:bg-[#E8AFCF] hover:scale-105 flex items-center justify-center transition-transform cursor-pointer"
-                >
-                    <i className="fas fa-search"></i> Predict
-                </div>
+                {showChooseImage && (
+                    <label
+                        className="cursor-pointer bg-[#D291BC] hover:bg-[#E8AFCF] hover:scale-105 transition-transform text-white text-xl font-semibold px-8 py-3 rounded-xl flex items-center gap-2 animate-fade-in"
+                    >
+                        <i className="fas fa-upload"></i> Choose Image
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleFileChange}
+                            className="hidden"
+                        />
+                    </label>
+                )}
+                {showPredictButton && (
+                    <div
+                        onClick={handlePredictButtonClick}
+                        className="text-white text-xl font-semibold px-17 rounded-xl bg-[#D291BC] hover:bg-[#E8AFCF] hover:scale-105 flex items-center justify-center transition-transform cursor-pointer animate-fade-in"
+                    >
+                        <i className="fas fa-search"></i> Predict
+                    </div>
+                )}
             </div>
 
             {selectedFile && (
@@ -89,22 +114,7 @@ const Home = () => {
 
             {isLoading && <div className="mt-4 text-[#4A154B]">Loading...</div>}
 
-            {/* New Section for Skin Cancer Info */}
-            <div className="mt-45 max-w-3xl text-center bg-[#E8AFCF] p-8 rounded-2xl backdrop-blur">
-                <h2 className="text-3xl font-bold text-[#4A154B] mb-4">
-                    Why Early Detection Matters
-                </h2>
-                <p className="text-[#4A154B] text-lg">
-                    Skin cancer is the most common form of cancer, but it’s also
-                    one of the most treatable when detected early. Regular
-                    screening and immediate attention to unusual skin changes
-                    can make all the difference. Use this tool as a first step,
-                    and always follow up with a medical professional for an
-                    accurate diagnosis.
-                </p>
-            </div>
-
-            <footer className="mt-10 text-center text-sm text-[#4A154B]">
+            <footer className="mt-110 text-center text-sm text-[#4A154B]">
                 Disclaimer: This tool is for informational purposes only. Always
                 consult a medical professional for an accurate diagnosis.
             </footer>
