@@ -13,21 +13,3 @@
 .gradient-bg {
     background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
 }
-
-
-module.exports = {
-    theme: {
-        extend: {
-            animation: {
-                'fade-in': 'fadeIn 0.5s ease-in-out',
-            },
-            keyframes: {
-                fadeIn: {
-                    '0%': { opacity: 0 },
-                    '100%': { opacity: 1 },
-                },
-            },
-        },
-    },
-    plugins: [],
-};

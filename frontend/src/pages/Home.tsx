@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { handlePredict, DiseaseProbs } from "../utility/fetch";
 
-const Home = () => {
+export default function Home() {
+
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [prediction, setPrediction] = useState<string | null>(null);
     const [isLoading, setLoading] = useState(false);
@@ -64,7 +65,7 @@ const Home = () => {
                 Upload an image to detect the likelihood of malignant skin cancer.
             </h2>
 
-            <div className="flex gap-14 p-10 pl-25 pr-25 rounded-2xl bg-[#F5F5F5]/80">
+            <div className="animate-fade-in flex gap-14 p-10 pl-25 pr-25 rounded-2xl bg-[#F5F5F5]/80">
                 {showChooseImage && (
                     <label
                         className="cursor-pointer bg-[#D291BC] hover:bg-[#E8AFCF] hover:scale-105 transition-transform text-white text-xl font-semibold px-8 py-3 rounded-xl flex items-center gap-2 animate-fade-in"
@@ -122,4 +123,3 @@ const Home = () => {
     );
 };
 
-export default Home;
