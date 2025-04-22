@@ -7,19 +7,19 @@
 }
 
 .bg-burgundy-900 {
-    background-color: #4A154B;
+    background-color: #6B2D6F; 
 }
 
 .bg-burgundy-700 {
-    background-color: #7A1E6B;
+    background-color: #9A4A8A; 
 }
 
 .bg-burgundy-500 {
-    background-color: #D291BC;
+    background-color: #E6B8D6;
 }
 
 .bg-burgundy-300 {
-    background-color: #f9eaf3;
+    background-color: #FBEAF3; 
 }
 
 .text-burgundy-900 {
@@ -31,11 +31,11 @@
 }
 
 .text-burgundy-500 {
-    color: #D291BC;
+    color: #e1a0cc;
 }
 
 .text-burgundy-300 {
-    color: #F5D5E8;
+    color: #f7d1e7;
 }
 
 @keyframes fadeIn {

@@ -9,7 +9,22 @@ export default function Home() {
     const [showChooseImage, setShowChooseImage] = useState(false);
     const [showPredictButton, setShowPredictButton] = useState(false);
 
-  
+    useEffect(() => {
+        // Show the "Choose Image" button after 500ms
+        const chooseImageTimeout = setTimeout(() => {
+            setShowChooseImage(true);
+        }, 500);
+
+        // Show the "Predict" button after 1000ms
+        const predictButtonTimeout = setTimeout(() => {
+            setShowPredictButton(true);
+        }, 1000);
+
+        return () => {
+            clearTimeout(chooseImageTimeout);
+            clearTimeout(predictButtonTimeout);
+        };
+    }, []);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length > 0) {
@@ -67,7 +82,7 @@ export default function Home() {
                 {showPredictButton && (
                     <div
                         onClick={handlePredictButtonClick}
-						className="text-white text-xl font-semibold px-17 rounded-xl bg-burgundy-700 hover:bg-burgundy-900 hover:scale-105 flex items-center justify-center transition-transform cursor-pointer">
+						className="text-white text-xl font-semibold px-17 rounded-xl bg-burgundy-700 hover:bg-burgundy-900 hover:scale-105 flex items-center justify-center transition-transform cursor-pointer animate-fade-in-delay">
                         <i className="fas fa-search"></i> Predict
                     </div>
                 )}
