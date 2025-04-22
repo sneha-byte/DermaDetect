@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import MainLayout from "./pages/layout";
 import Home from "./pages/Home"; 
 import FindADermatologist from "./pages/FindADermatologist";
@@ -8,7 +8,6 @@ import HowItWorks from "./pages/HowItWorks";
 
 function App() {
     return (
-        <Router>
             <Routes>
             <Route element={<MainLayout />}>
                   <Route path="/" element={<Home />} />
@@ -17,7 +16,6 @@ function App() {
                   <Route path="/find-a-dermatologist" element={<FindADermatologist />} />
             </Route>
             </Routes>
-        </Router>
     );
 }
 

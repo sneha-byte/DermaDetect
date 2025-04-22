@@ -9,22 +9,7 @@ export default function Home() {
     const [showChooseImage, setShowChooseImage] = useState(false);
     const [showPredictButton, setShowPredictButton] = useState(false);
 
-    useEffect(() => {
-        // Show the Choose Image button after 500ms
-        const chooseImageTimeout = setTimeout(() => {
-            setShowChooseImage(true);
-        }, 500);
-
-        // Show the Predict button after the choose image button
-        const predictButtonTimeout = setTimeout(() => {
-            setShowPredictButton(true);
-        }, 1000);
-
-        return () => {
-            clearTimeout(chooseImageTimeout);
-            clearTimeout(predictButtonTimeout);
-        };
-    }, []);
+  
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length > 0) {
@@ -56,19 +41,19 @@ export default function Home() {
     };
 
     return (
-        <div className="min-h-screen bg-[#F5F5F5] flex flex-col items-center justify-start">
-            <h1 className="text-5xl font-bold text-[#4A154B] text-center pt-4 pb-5">
+        <div className="min-h-screen  bg-burgundy-300 flex flex-col items-center justify-start">
+            <h1 className="text-5xl font-bold text-burgundy-900 text-center pt-4 pb-5">
                 Malignant Skin Cancer Detector
             </h1>
 
-            <h2 className="text-2xl text-[#4A154B] text-center mt-2">
+            <h2 className="text-2xl text-burgundy-900 text-center mt-2">
                 Upload an image to detect the likelihood of malignant skin cancer.
             </h2>
 
-            <div className="animate-fade-in flex gap-14 p-10 pl-25 pr-25 rounded-2xl bg-[#F5F5F5]/80">
+            <div className="animate-fade-in flex gap-14 p-10 pl-25 pr-25 rounded-2xl bg-burgundy-300">
                 {showChooseImage && (
                     <label
-                        className="cursor-pointer bg-[#D291BC] hover:bg-[#E8AFCF] hover:scale-105 transition-transform text-white text-xl font-semibold px-8 py-3 rounded-xl flex items-center gap-2 animate-fade-in"
+                        className="cursor-pointer bg-burgundy-700 hover:bg-[#E8AFCF] hover:scale-105 transition-transform text-white text-xl font-semibold px-8 py-3 rounded-xl flex items-center gap-2 animate-fade-in"
                     >
                         <i className="fas fa-upload"></i> Choose Image
                         <input
@@ -82,8 +67,7 @@ export default function Home() {
                 {showPredictButton && (
                     <div
                         onClick={handlePredictButtonClick}
-                        className="text-white text-xl font-semibold px-17 rounded-xl bg-[#D291BC] hover:bg-[#E8AFCF] hover:scale-105 flex items-center justify-center transition-transform cursor-pointer animate-fade-in"
-                    >
+						className="text-white text-xl font-semibold px-17 rounded-xl bg-burgundy-700 hover:bg-burgundy-900 hover:scale-105 flex items-center justify-center transition-transform cursor-pointer">
                         <i className="fas fa-search"></i> Predict
                     </div>
                 )}
@@ -115,11 +99,10 @@ export default function Home() {
 
             {isLoading && <div className="mt-4 text-[#4A154B]">Loading...</div>}
 
-            <footer className="mt-110 text-center text-sm text-[#4A154B]">
+            <footer className="mt-130 text-center text-sm text-[#4A154B]">
                 Disclaimer: This tool is for informational purposes only. Always
                 consult a medical professional for an accurate diagnosis.
             </footer>
         </div>
     );
 };
-
