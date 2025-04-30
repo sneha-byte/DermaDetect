@@ -16,32 +16,32 @@ function Navbar() {
                 <Link
                     to="/"
                     className={`${
-                        isActive("/") ? "text-burgundy-500 text-xl font-bold" : "text-burgundy-900"
-                    } no-underline hover:text-burgundy-500 inline-flex items-center px-1 pt-1 font-medium text-lg`}
+                        isActive("/") ? "text-burgundy-900 text-xl font-bold" : "text-burgundy-900"
+                    } no-underline hover:text-burgundy-900 inline-flex items-center px-1 pt-1 font-medium text-lg`}
                 >
                     Home
                 </Link>
                 <Link
                     to="/how-it-works"
                     className={`${
-                        isActive("/how-it-works") ? "text-burgundy-500 text-xl font-bold" : "text-burgundy-900"
-                    } no-underline hover:text-burgundy-500 inline-flex items-center px-1 pt-1 font-medium text-lg`}
+                        isActive("/how-it-works") ? "text-burgundy-900 text-xl font-bold" : "text-burgundy-900"
+                    } no-underline hover:text-burgundy-900 inline-flex items-center px-1 pt-1 font-medium text-lg`}
                 >
                     How It Works
                 </Link>
                 <Link
                     to="/about-skin-cancer"
                     className={`${
-                        isActive("/about-skin-cancer") ? "text-burgundy-500 font-bold text-xl " : "text-burgundy-900"
-                    } no-underline hover:text-burgundy-500 inline-flex items-center px-1 pt-1 font-medium text-lg`}
+                        isActive("/about-skin-cancer") ? "text-burgundy-900 font-bold text-xl " : "text-burgundy-900"
+                    } no-underline hover:text-burgundy-900 inline-flex items-center px-1 pt-1 font-medium text-lg`}
                 >
                     About Skin Cancer
                 </Link>
                 <Link
                     to="/find-a-dermatologist"
                     className={`${
-                        isActive("/find-a-dermatologist") ? "text-xl text-burgundy-500 font-bold" : "text-burgundy-900"
-                    } no-underline hover:text-burgundy-500 inline-flex items-center px-1 pt-1 font-medium text-lg`}
+                        isActive("/find-a-dermatologist") ? "text-xl text-burgundy-900 font-bold" : "text-burgundy-900"
+                    } no-underline hover:text-burgundy-900 inline-flex items-center px-1 pt-1 font-medium text-lg`}
                 >
                     Find a Dermatologist
                 </Link>

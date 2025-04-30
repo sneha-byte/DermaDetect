@@ -31,7 +31,7 @@
 }
 
 .text-burgundy-500 {
-    color: #e1a0cc;
+    color: #df9aca;
 }
 
 .text-burgundy-300 {
@@ -41,13 +41,9 @@
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
-
     }
     to {
         opacity: 1;
-        transform: translateY(0);
-
     }
 }
 
@@ -62,5 +58,5 @@
     animation: fadeIn 1s ease-in-out;
     animation-delay: 1s;
     animation-fill-mode: forwards;
-}
+} 
 

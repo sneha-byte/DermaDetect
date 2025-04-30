@@ -1,30 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { handlePredict, DiseaseProbs } from "../utility/fetch";
 
 export default function Home() {
-
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [prediction, setPrediction] = useState<string | null>(null);
     const [isLoading, setLoading] = useState(false);
-    const [showChooseImage, setShowChooseImage] = useState(false);
-    const [showPredictButton, setShowPredictButton] = useState(false);
-
-    useEffect(() => {
-        // Show the "Choose Image" button after 500ms
-        const chooseImageTimeout = setTimeout(() => {
-            setShowChooseImage(true);
-        }, 500);
-
-        // Show the "Predict" button after 1000ms
-        const predictButtonTimeout = setTimeout(() => {
-            setShowPredictButton(true);
-        }, 1000);
-
-        return () => {
-            clearTimeout(chooseImageTimeout);
-            clearTimeout(predictButtonTimeout);
-        };
-    }, []);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length > 0) {
@@ -56,7 +36,7 @@ export default function Home() {
     };
 
     return (
-        <div className="min-h-screen  bg-burgundy-300 flex flex-col items-center justify-start">
+        <div className="min-h-screen bg-burgundy-300 flex flex-col items-center justify-start">
             <h1 className="text-5xl font-bold text-burgundy-900 text-center pt-4 pb-5">
                 Malignant Skin Cancer Detector
             </h1>
@@ -65,27 +45,27 @@ export default function Home() {
                 Upload an image to detect the likelihood of malignant skin cancer.
             </h2>
 
-            <div className="animate-fade-in flex gap-14 p-10 pl-25 pr-25 rounded-2xl bg-burgundy-300">
-                {showChooseImage && (
-                    <label
-                        className="cursor-pointer bg-burgundy-700 hover:bg-[#E8AFCF] hover:scale-105 transition-transform text-white text-xl font-semibold px-8 py-3 rounded-xl flex items-center gap-2 animate-fade-in"
-                    >
-                        <i className="fas fa-upload"></i> Choose Image
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={handleFileChange}
-                            className="hidden"
-                        />
-                    </label>
-                )}
-                {showPredictButton && (
-                    <div
-                        onClick={handlePredictButtonClick}
-						className="text-white text-xl font-semibold px-17 rounded-xl bg-burgundy-700 hover:bg-burgundy-900 hover:scale-105 flex items-center justify-center transition-transform cursor-pointer animate-fade-in-delay">
-                        <i className="fas fa-search"></i> Predict
-                    </div>
-                )}
+            <div className="flex gap-14 p-10 pl-25 pr-25 rounded-2xl bg-burgundy-300">
+                {/* Choose Image Button */}
+                <label
+                    className="cursor-pointer bg-burgundy-700 hover:bg-burgundy-900 hover:scale-105 transition-transform text-white text-xl font-semibold px-8 py-3 rounded-xl flex items-center gap-2 fade-in"
+                >
+                    <i className="fas fa-upload"></i> Choose Image
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        className="hidden"
+                    />
+                </label>
+
+                {/* Predict Button */}
+                <div
+                    onClick={handlePredictButtonClick}
+                    className="text-white text-xl font-semibold px-17 rounded-xl bg-burgundy-700 hover:bg-burgundy-900 hover:scale-105 flex items-center justify-center transition-transform cursor-pointer fade-in-delay"
+                >
+                    <i className="fas fa-search"></i> Predict
+                </div>
             </div>
 
             {selectedFile && (
@@ -120,4 +100,4 @@ export default function Home() {
             </footer>
         </div>
     );
-};
+}
