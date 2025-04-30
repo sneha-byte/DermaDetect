@@ -22,21 +22,6 @@ def proxy_practitioner():
     try:
         response = requests.get(external_api_url, params=query_params, headers=headers)
         data = response.json()
-
-        # # Filter for dermatologists
-        # filtered_entries = []
-        # if 'entry' in data:
-        #     for entry in data['entry']:
-        #         practitioner = entry.get('resource', {})
-        #         qualifications = practitioner.get('qualification', [])
-
-        #         for qual in qualifications:
-        #             code_text = qual.get('code', {}).get('text', '').lower()
-        #             if 'dermatology' in code_text:
-        #                 filtered_entries.append(entry)
-        #                 break  # Include each match once
-
-        # print("Filtered Entries:", filtered_entries)  # Debugging
         pprint(data)
         return data
 

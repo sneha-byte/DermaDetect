@@ -102,7 +102,7 @@ export default function FindDermatologist() {
                                         : 'Address not available';
 
                                     return (
-                                        <li key={index} className="border rounded-lg p-4 bg-[#F5F5F5] shadow-sm">
+                                        <li key={index} className="border rounded-lg p-4 bg-[#f5ecf9] shadow-sm">
                                             <p className="font-bold">{fullName}</p>
                                             <p>{fullAddress}</p>
                                         </li>
