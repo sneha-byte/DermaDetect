@@ -4,42 +4,107 @@ Skin Cancer Classification Web Application
 Designed to help users detect the likelihood of malignant skin cancer using advanced machine learning techniques. The frontend was built using React and Tailwind CSS and the backend used a Python Flask API to process the uploaded image and communicate with the machine learning model. The model is a 
 convolutional neural network trained on a dataset of skin lesion images to classify the likelihood of malignant skin cancer
 
-Prerequisites
-Before running the project, ensure you have the following installed on your system:
+# Skin Cancer Classification Web Application
 
-Python (Version 3.8 or higher)
-Node.js (Version 16 or higher)
-npm (Comes with Node.js)
-pip (Python package manager)
-Git (Optional, for cloning the repository)
-Setup Instructions
-1. Clone the Repository
+A web application designed to help users detect the likelihood of malignant skin cancer using advanced machine learning techniques.
+
+The **frontend** is built using **React** and **Tailwind CSS**, while the **backend** is powered by a **Python Flask API** that processes uploaded images and communicates with a **convolutional neural network (CNN)** model. The model is trained on a dataset of skin lesion images to classify the likelihood of malignant skin cancer.
+
+---
+
+## 🚀 Prerequisites
+
+Make sure you have the following installed on your system:
+
+- Python (Version 3.8 or higher)
+- Node.js (Version 16 or higher)
+- npm (comes with Node.js)
+- pip (Python package manager)
+- Git (optional, for cloning the repository)
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/skin-cancer-classification.git
+cd skin-cancer-classification
 2. Backend Setup
 a. Create a Virtual Environment
+
+bash
+Copy
+Edit
+python -m venv venv
 b. Activate the Virtual Environment
+
 Windows:
+
+bash
+Copy
+Edit
+venv\Scripts\activate
 macOS/Linux:
+
+bash
+Copy
+Edit
+source venv/bin/activate
 c. Install Dependencies
+
+bash
+Copy
+Edit
+pip install -r requirements.txt
 d. Start the Backend Server
+
+bash
+Copy
+Edit
 uvicorn main:app --reload --port 5000
-The backend server will start running at http://127.0.0.1:5000.
+The backend server will run at:
+👉 http://127.0.0.1:5000
 
 3. Frontend Setup
 a. Navigate to the Frontend Directory
+
+bash
+Copy
+Edit
+cd frontend
 b. Install Dependencies
+
+bash
+Copy
+Edit
+npm install
 c. Start the Frontend Development Server
-The frontend will start running at http://127.0.0.1:5173.
 
-How to Use
-Find a Dermatologist:
+bash
+Copy
+Edit
+npm run dev
+The frontend will run at:
+👉 http://127.0.0.1:5173
 
-Navigate to the "Find a Dermatologist" page.
-Enter a name in the search bar and click the search button to view results.
-Skin Cancer Detection:
+🧪 How to Use
+🔍 Find a Dermatologist
+Go to the "Find a Dermatologist" page.
 
-Navigate to the "Home" page.
-Upload an image of the skin lesion.
-Click the "Predict" button to get the likelihood of malignant skin cancer.
+Enter a name in the search bar.
+
+Click the Search button to view results.
+
+🖼️ Skin Cancer Detection
+Go to the "Home" page.
+
+Upload an image of a skin lesion.
+
+Click the Predict button.
+
+View the likelihood of malignant skin cancer.
 
 ![Screenshot 2025-04-30 164310](https://github.com/user-attachments/assets/ba0595ed-36cd-4407-a111-04a7f29af4e1)
 ![Screenshot 2025-04-30 171016](https://github.com/user-attachments/assets/68137db1-8c23-4c5f-9813-5a0e86261bcf)
